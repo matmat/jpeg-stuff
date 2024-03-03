@@ -1,0 +1,176 @@
+# Adapted from Pennebaker & Mitchell (1993) - JPEG still image data compression standard
+
+<jpeg_data> ::= <soi> <nframe> <eoi>
+              | <soi> <tblsmisc> <eoi>
+              | <soi> <tblsmisc> <dhp> <fparms> <fset> <eoi>
+              | <soi> <forbid> <eoi>
+
+<fset> ::= <nframe> <xframes>
+
+<xframes> ::= ε
+            | <xframes> <dframe>
+            | <xframes> <nframe>
+
+<dframe> ::= <dtblsmisc> <dsof> <fparms> <scanset>
+
+<dtblsmisc> ::= <tblsmisc>
+              | <tblsmisc> <exp> BY00 BY03 <exp_data> <tblsmisc>
+
+<exp_data> ::= BY01 | BY10 | BY11
+
+<nframe> ::= <tblsmisc> <nsof> <fparms> <scanset>
+
+<scanset> ::= <scanf>
+            | <scanset> <scan>
+
+<scanf> ::= <tblsmisc> <sos> <sparms> <ecdataf>
+
+<ecdataf> ::= <ecdata>
+            | <ecdata> <dnl> <len> <nlines>
+
+<scan> ::= <tblsmisc> <sos> <sparms> <ecdata>
+
+<ecdata> ::= ε
+           | <ecdata> <nonFFb>
+           | <ecdata> <rstm>
+           | <ecdata> BYFF BY00
+
+<sparms> ::= <len> <nsc> sspec() <prog_spec>
+
+<prog_spec> ::= <ssstart> <ssend> <sapprox>
+
+<sapprox> ::= <anyb>
+
+<ssend> ::= <indexb>
+
+<ssstart> ::= <indexb>
+
+<nsc> ::= BY01 | BY02 | BY03 | BY04
+
+<fparms> ::= <len> <prec> <nlines> <linlen> <nfc> fspec()
+
+<nfc> ::= <non00b>
+
+<linlen> ::= <intval>
+
+<nlines> ::= <intval>
+
+<prec> ::= <anyb>
+
+<tblsmisc> ::= ε
+             | <tblsmisc> <dqt> <len> <dqt_data>
+             | <tblsmisc> <dht> <len> <dht_data>
+             | <tblsmisc> <dac> <len> <dac_data>
+             | <tblsmisc> <dri> <len> <rstintv>
+             | <tblsmisc> <com> <len> comspec()
+             | <tblsmisc> <appn> <len> appspec()
+
+<rstintv> ::= <intval>
+
+<dac_data> ::= <dac_cond>
+             | <dac_data> <dac_cond>
+
+<dac_cond> ::= <dc_spec> <ul>
+             | <ac_spec> <kx>
+
+<kx> ::= <kxindexb>
+
+<ul> ::= <anyb>
+
+<dht_data> ::= <huff_tbl>
+             | <dht_data> <huff_tbl>
+
+<huff_tbl> ::= <tabspec> huffspec()
+
+<tabspec> ::= <dc_spec>
+            | <ac_spec>
+
+<ac_spec> ::= <spechi1b>
+
+<dc_spec> ::= <spechi0b>
+
+<dqt_data> ::= <qt_tbl>
+             | <dqt_data> <qt_tbl>
+
+<qt_tbl> ::= <qbyt_spec> s64chr()
+           | <qint_spec> s64int()
+
+<qint_spec> ::= <spechi1b>
+
+<qbyt_spec> ::= <spechi0b>
+
+<len> ::= <intval>
+
+<intval> ::= <anyb> <anyb>
+
+<forbid> ::= <prefix> <resb>
+           | <tem>
+           | <jpg>
+           | <jpgn>
+
+<tem> ::= <prefix> BY01
+
+<sos> ::= <prefix> BYDA
+
+<soi> ::= <prefix> BYD8
+
+<rstm> ::= <prefix> <rstmb>
+
+<nsof> ::= <prefix> <nsofb>
+
+<jpgn> ::= <prefix> <jpgnb>
+
+<jpg> ::= <prefix> BYC8
+
+<exp> ::= <prefix> BYDF
+
+<eoi> ::= <prefix> BYD9
+
+<dsof> ::= <prefix> <dsofb>
+
+<dri> ::= <prefix> BYDD
+
+<dqt> ::= <prefix> BYDB
+
+<dnl> ::= <prefix> BYDC
+
+<dht> ::= <prefix> BYC4
+
+<dhp> ::= <prefix> BYDE
+
+<dac> ::= <prefix> BYCC
+
+<com> ::= <prefix> BYFE
+
+<appn> ::= <prefix> <appnb>
+
+<prefix> ::= <fill> BYFF
+
+<fill> ::= ε 
+         | <fill> BYFF
+
+<resb> ::= BY02 | ... | BYBF
+
+<jpgnb> ::= BYF0 | ... | BYFD
+
+<appnb> ::= BYE0 | ... | BYEF
+
+<rstmb> ::= BYD0 | ... | BYD7
+
+<dsofb> ::= BYC5 | BYC6 | BYC7 | BYCD | BYCE | BYCF
+
+<nsofb> ::= BYC0 | BYC1 | BYC2 | BYC3 | BYC9 | BYCA | BYCB
+
+<spechi1b> ::= BY10 | BY11 | BY12 | BY13
+
+<spechi0b> ::= BY00 | BY01 | BY02 | BY03
+
+<kxindexb> ::= BY01 | ... | BY3F
+
+<indexb> ::= BY00 | ... | BY3F
+
+<nonFFb> ::= BY00 | ... | BYFE
+
+<non00b> ::= BY01 | ... | BYFF
+
+<anyb> ::= BY00 | ... | BYFF
