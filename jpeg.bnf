@@ -5,58 +5,81 @@
               | <soi> <tblsmisc> <dhp> <fparms> <fset> <eoi>
               | <soi> <forbid> <eoi>
 
+# Frame set
 <fset> ::= <nframe> <xframes>
 
+# Extra frames
 <xframes> ::= ε
             | <xframes> <dframe>
             | <xframes> <nframe>
 
+# Differential frame
 <dframe> ::= <dtblsmisc> <dsof> <fparms> <scanset>
 
+# Tables and miscellaneous marker segments preceding a differential frame
 <dtblsmisc> ::= <tblsmisc>
               | <tblsmisc> <exp> BY00 BY03 <exp_data> <tblsmisc>
 
+# EXP marker length and data
 <exp_data> ::= BY01 | BY10 | BY11
 
+# Nondifferntial frame
 <nframe> ::= <tblsmisc> <nsof> <fparms> <scanset>
 
+# Set of scans
 <scanset> ::= <scanf>
             | <scanset> <scan>
 
+# First scan
 <scanf> ::= <tblsmisc> <sos> <sparms> <ecdataf>
 
+# Entropy-coded data for the first scan
 <ecdataf> ::= <ecdata>
             | <ecdata> <dnl> <len> <nlines>
 
+# A scan
 <scan> ::= <tblsmisc> <sos> <sparms> <ecdata>
 
+# Entropy-coded data
 <ecdata> ::= ε
            | <ecdata> <nonFFb>
            | <ecdata> <rstm>
            | <ecdata> BYFF BY00
 
+# Scan parameters
 <sparms> ::= <len> <nsc> sspec() <prog_spec>
 
+# Progressive specification
 <prog_spec> ::= <ssstart> <ssend> <sapprox>
 
+# Successive-approximation parameters
 <sapprox> ::= <anyb>
 
+# Spectral-selection-end index byte 
 <ssend> ::= <indexb>
 
+# Spectral-selection-start index byte
 <ssstart> ::= <indexb>
 
+# Number of scan components
 <nsc> ::= BY01 | BY02 | BY03 | BY04
 
+# Frame parameters
 <fparms> ::= <len> <prec> <nlines> <linlen> <nfc> fspec()
 
+# Number of frame components
 <nfc> ::= <non00b>
 
+# Number of samples per line
 <linlen> ::= <intval>
 
+# Number of lines
 <nlines> ::= <intval>
 
+# Sample precision
 <prec> ::= <anyb>
 
+# Tables and miscellaneous marker segments
 <tblsmisc> ::= ε
              | <tblsmisc> <dqt> <len> <dqt_data>
              | <tblsmisc> <dht> <len> <dht_data>
@@ -65,112 +88,162 @@
              | <tblsmisc> <com> <len> comspec()
              | <tblsmisc> <appn> <len> appspec()
 
+# Restart interval
 <rstintv> ::= <intval>
 
+# DAC marker's data
 <dac_data> ::= <dac_cond>
              | <dac_data> <dac_cond>
 
+# Arithmetic-coding conditioning table(s)
 <dac_cond> ::= <dc_spec> <ul>
              | <ac_spec> <kx>
 
+# Kx parameter
 <kx> ::= <kxindexb>
 
+# Upper and lower bounds 
 <ul> ::= <anyb>
 
+# DHT marker's data
 <dht_data> ::= <huff_tbl>
              | <dht_data> <huff_tbl>
 
+# Huffman table
 <huff_tbl> ::= <tabspec> huffspec()
 
+# Table specification
 <tabspec> ::= <dc_spec>
             | <ac_spec>
 
+# AC coefficient table specification
 <ac_spec> ::= <spechi1b>
 
+# DC coefficient table specification
 <dc_spec> ::= <spechi0b>
 
+# DQT marker's data
 <dqt_data> ::= <qt_tbl>
              | <dqt_data> <qt_tbl>
 
+# Quantization table
 <qt_tbl> ::= <qbyt_spec> s64chr()
            | <qint_spec> s64int()
 
+# Quantization table precision specification: integer values
 <qint_spec> ::= <spechi1b>
 
+# Quantization table precision specification: byte values
 <qbyt_spec> ::= <spechi0b>
 
+# Marker segment length
 <len> ::= <intval>
 
+# Integer value
 <intval> ::= <anyb> <anyb>
 
+# Interchange format forbidden markers
 <forbid> ::= <prefix> <resb>
            | <tem>
            | <jpg>
            | <jpgn>
 
+# TEM marker
 <tem> ::= <prefix> BY01
 
+# SOS marker
 <sos> ::= <prefix> BYDA
 
+# SOI marker
 <soi> ::= <prefix> BYD8
 
+# RSTm markers
 <rstm> ::= <prefix> <rstmb>
 
+# Nondifferential SOF markers
 <nsof> ::= <prefix> <nsofb>
 
+# JPEGn markers
 <jpgn> ::= <prefix> <jpgnb>
 
+# JPG marker
 <jpg> ::= <prefix> BYC8
 
+# EXP marker
 <exp> ::= <prefix> BYDF
 
+# EOI marker
 <eoi> ::= <prefix> BYD9
 
+# Differential SOF markers
 <dsof> ::= <prefix> <dsofb>
 
+# DRI marker
 <dri> ::= <prefix> BYDD
 
+# DQT marker
 <dqt> ::= <prefix> BYDB
 
+# DNL marker
 <dnl> ::= <prefix> BYDC
 
+# DHT marker
 <dht> ::= <prefix> BYC4
 
+# DHP marker
 <dhp> ::= <prefix> BYDE
 
+# DAC marker
 <dac> ::= <prefix> BYCC
 
+# COM marker
 <com> ::= <prefix> BYFE
 
+# APPn markers
 <appn> ::= <prefix> <appnb>
 
+# Marker byte prefix
 <prefix> ::= <fill> BYFF
 
+# Fill bytes
 <fill> ::= ε 
          | <fill> BYFF
 
+# Reserved marker bytes
 <resb> ::= BY02 | ... | BYBF
 
+# JPEGn marker bytes
 <jpgnb> ::= BYF0 | ... | BYFD
 
+# APPn marker bytes
 <appnb> ::= BYE0 | ... | BYEF
 
+# RSTm marker bytes
 <rstmb> ::= BYD0 | ... | BYD7
 
+# Differential SOF marker bytes
 <dsofb> ::= BYC5 | BYC6 | BYC7 | BYCD | BYCE | BYCF
 
+# Nondifferential SOF marker bytes
 <nsofb> ::= BYC0 | BYC1 | BYC2 | BYC3 | BYC9 | BYCA | BYCB
 
+# Specification byte values with high order bits set to B'0001'
 <spechi1b> ::= BY10 | BY11 | BY12 | BY13
 
+# Specification byte values with high order bits set to B'0000'
 <spechi0b> ::= BY00 | BY01 | BY02 | BY03
 
+# Allowed values for Kx
 <kxindexb> ::= BY01 | ... | BY3F
 
+# Allowed values for DCT coefficients index
 <indexb> ::= BY00 | ... | BY3F
 
+# Non-FF byte value
 <nonFFb> ::= BY00 | ... | BYFE
 
+# Non-00 byte value
 <non00b> ::= BY01 | ... | BYFF
 
+# Any byte value
 <anyb> ::= BY00 | ... | BYFF
