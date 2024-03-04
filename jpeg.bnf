@@ -47,6 +47,7 @@
            | <ecdata> BYFF BY00
 
 # Scan parameters
+# sspec() : Scan component specification
 <sparms> ::= <len> <nsc> sspec() <prog_spec>
 
 # Progressive specification
@@ -65,6 +66,7 @@
 <nsc> ::= BY01 | BY02 | BY03 | BY04
 
 # Frame parameters
+# fspec() : Frame component specification
 <fparms> ::= <len> <prec> <nlines> <linlen> <nfc> fspec()
 
 # Number of frame components
@@ -80,6 +82,8 @@
 <prec> ::= <anyb>
 
 # Tables and miscellaneous marker segments
+# comspec() : Comment bytes
+# appspec() : Application bytes
 <tblsmisc> ::= ε
              | <tblsmisc> <dqt> <len> <dqt_data>
              | <tblsmisc> <dht> <len> <dht_data>
@@ -110,6 +114,7 @@
              | <dht_data> <huff_tbl>
 
 # Huffman table
+# huffspec() : Huffman table entries
 <huff_tbl> ::= <tabspec> huffspec()
 
 # Table specification
@@ -127,6 +132,8 @@
              | <dqt_data> <qt_tbl>
 
 # Quantization table
+# s64chr() : 64 characters
+# s64int() : 64 integers
 <qt_tbl> ::= <qbyt_spec> s64chr()
            | <qint_spec> s64int()
 
