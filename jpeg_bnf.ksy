@@ -57,14 +57,14 @@ enums:
     - 0xe5: app5
     - 0xe6: app6
     - 0xe7: app7
-    - 0xe8: app9
-    - 0xe9: app10
-    - 0xea: app11
-    - 0xeb: app12
-    - 0xec: app13
-    - 0xed: app14
-    - 0xee: app15
-    - 0xef: app16
+    - 0xe8: app8
+    - 0xe9: app9
+    - 0xea: app10
+    - 0xeb: app11
+    - 0xec: app12
+    - 0xed: app13
+    - 0xee: app14
+    - 0xef: app15
   jpgnb:
     - 0xf0: jpg0
     - 0xf1: jpg1
@@ -80,21 +80,6 @@ enums:
     - 0xfb: jpg11
     - 0xfc: jpg12
     - 0xfd: jpg13
-  resb:
-    - 0x02: res
-    - 0x03: res
-    - 0x04: res
-    - 0x05: res
-    - 0x06: res
-    - 0x07: res
-    - 0x08: res
-    - 0x09: res
-    - 0x0a: res
-    - 0x0b: res
-    - 0x0c: res
-    - 0x0d: res
-    - 0x0e: res
-    - 0x0f: res
 types:
   segment:
     seq:
