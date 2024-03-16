@@ -1,12 +1,14 @@
 meta:
   id: jpeg_data
-  file-extension: jpg
+  title: JPEG (Joint Photographic Experts Group) File Interchange Format
+  file-extension:
+    - jpg
+    - jpeg
   endian: be
 seq:
   - id: segments
     type: segment
     repeat: eos
-
 types:
   segment:
     seq:
