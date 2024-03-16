@@ -10,7 +10,36 @@ seq:
     type: segment
     repeat: eos
 enums:
-  rstm:
+  markers:
+    - 0x01: tem
+    - 0xc4: dht
+    - 0xc8: jpg
+    - 0xcc: dac
+    - 0xd8: soi
+    - 0xd9: eoi
+    - 0xda: sos
+    - 0xdb: dqt
+    - 0xdc: dnl
+    - 0xdd: dri
+    - 0xde: dhp
+    - 0xdf: exp
+    - 0xfe: com
+  nsofb:
+    - 0xc0: sof0
+    - 0xc1: sof1
+    - 0xc2: sof2
+    - 0xc3: sof3
+    - 0xc9: sof9
+    - 0xca: sof10
+    - 0xcb: sof11
+  dsofb:
+    - 0xc5: sof5
+    - 0xc6: sof6
+    - 0xc7: sof7
+    - 0xcd: sof13
+    - 0xce: sof14
+    - 0xcf: sof15
+  rstmb:
     - 0xd0: rst0
     - 0xd1: rst1
     - 0xd2: rst2
@@ -19,36 +48,6 @@ enums:
     - 0xd5: rst5
     - 0xd6: rst6
     - 0xd7: rst7
-  nsof:
-    - 0xc0: sof0
-    - 0xc1: sof1
-    - 0xc2: sof2
-    - 0xc3: sof3
-    - 0xc9: sof9
-    - 0xca: sof10
-    - 0xcb: sof11
-  jpgn:
-    - 0xf0: jpg0
-    - 0xf1: jpg1
-    - 0xf2: jpg2
-    - 0xf3: jpg3
-    - 0xf4: jpg4
-    - 0xf5: jpg5
-    - 0xf6: jpg6
-    - 0xf7: jpg7
-    - 0xf8: jpg8
-    - 0xf9: jpg9
-    - 0xfa: jpg10
-    - 0xfb: jpg11
-    - 0xfc: jpg12
-    - 0xfd: jpg13
-  dsof:
-    - 0xc5: sof5
-    - 0xc6: sof6
-    - 0xc7: sof7
-    - 0xcd: sof13
-    - 0xce: sof14
-    - 0xcf: sof15
   appn:
     - 0xe0: app0
     - 0xe1: app1
@@ -66,20 +65,36 @@ enums:
     - 0xed: app14
     - 0xee: app15
     - 0xef: app16
-  markers:
-    - 0x01: tem
-    - 0xc4: dht
-    - 0xc8: jpg
-    - 0xcc: dac
-    - 0xd8: soi
-    - 0xd9: eoi
-    - 0xda: sos
-    - 0xdb: dqt
-    - 0xdc: dnl
-    - 0xdd: dri
-    - 0xde: dhp
-    - 0xdf: exp
-    - 0xfe: com
+  jpgnb:
+    - 0xf0: jpg0
+    - 0xf1: jpg1
+    - 0xf2: jpg2
+    - 0xf3: jpg3
+    - 0xf4: jpg4
+    - 0xf5: jpg5
+    - 0xf6: jpg6
+    - 0xf7: jpg7
+    - 0xf8: jpg8
+    - 0xf9: jpg9
+    - 0xfa: jpg10
+    - 0xfb: jpg11
+    - 0xfc: jpg12
+    - 0xfd: jpg13
+  resb:
+    - 0x02: res
+    - 0x03: res
+    - 0x04: res
+    - 0x05: res
+    - 0x06: res
+    - 0x07: res
+    - 0x08: res
+    - 0x09: res
+    - 0x0a: res
+    - 0x0b: res
+    - 0x0c: res
+    - 0x0d: res
+    - 0x0e: res
+    - 0x0f: res
 types:
   segment:
     seq:
