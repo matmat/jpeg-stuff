@@ -19,10 +19,21 @@ types:
         enum: marker_enum
       - id: length
         type: u2
-        if: marker != marker_enum::soi and marker != marker_enum::eoi and marker != marker_enum::tem and (marker >= marker_enum::rst0 and marker <= marker_enum::rst7)
+        if: |
+          marker != marker_enum::soi
+          and marker != marker_enum::eoi
+          and marker != marker_enum::tem
+          #and (marker >= marker_enum::rst0 and marker <= marker_enum::rst7)
       - id: data
         size: length - 2
-        if: marker != marker_enum::soi and marker != marker_enum::eoi and marker != marker_enum::tem and (marker >= marker_enum::rst0 and marker <= marker_enum::rst7)
+        if: |
+          marker != marker_enum::soi
+          and marker != marker_enum::eoi
+          and marker != marker_enum::tem
+          #and (marker >= marker_enum::rst0 and marker <= marker_enum::rst7)
+      - id: image_data
+        size-eos: true
+        if: marker == marker_enum::sos
     enums:
       marker_enum:
         0x01: tem
