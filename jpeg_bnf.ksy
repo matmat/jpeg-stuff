@@ -23,14 +23,28 @@ types:
           marker != marker_enum::soi
           and marker != marker_enum::eoi
           and marker != marker_enum::tem
-          #and (marker >= marker_enum::rst0 and marker <= marker_enum::rst7)
+          and marker != marker_enum::rst0
+          and marker != marker_enum::rst1
+          and marker != marker_enum::rst2
+          and marker != marker_enum::rst3
+          and marker != marker_enum::rst4
+          and marker != marker_enum::rst5
+          and marker != marker_enum::rst6
+          and marker != marker_enum::rst7
       - id: data
         size: length - 2
         if: |
           marker != marker_enum::soi
           and marker != marker_enum::eoi
           and marker != marker_enum::tem
-          #and (marker >= marker_enum::rst0 and marker <= marker_enum::rst7)
+          and marker != marker_enum::rst0
+          and marker != marker_enum::rst1
+          and marker != marker_enum::rst2
+          and marker != marker_enum::rst3
+          and marker != marker_enum::rst4
+          and marker != marker_enum::rst5
+          and marker != marker_enum::rst6
+          and marker != marker_enum::rst7
       - id: image_data
         size-eos: true
         if: marker == marker_enum::sos
