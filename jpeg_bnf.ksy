@@ -26,7 +26,7 @@ types:
           and (marker >= marker_enum::rst0 and marker <= marker_enum::rst7)
       - id: data
         size: length - 2
-        if:
+        if: |
           marker != marker_enum::soi
           and marker != marker_enum::eoi
           and marker != marker_enum::tem
