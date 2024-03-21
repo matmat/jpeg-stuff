@@ -46,7 +46,7 @@ types:
           and marker != marker_enum::rst6
           and marker != marker_enum::rst7
       - id: image_data
-        size-eos: true
+        size: _io.size - _io.pos - 2
         if: marker == marker_enum::sos
     enums:
       marker_enum:
